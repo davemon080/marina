@@ -1,0 +1,24 @@
+[
+  {
+    "serial_number": "66870975",
+    "certificate_number": "COICNW200003978734",
+    "full_name": "ADAMU JIBRIL",
+    "certificate_type": "Navigation Cargo handling and stowage Controlling the operation of the ship and care for persons on board",
+    "function": "Navigation Cargo handling and stowage Controlling the operation of the ship and care for persons on board",
+    "Level of Responsibility": "OPERATIONAL",
+    "regulation_no": "II/1",
+    "capacity": "OFFICER IN CHARGE OF A NAVIGATIONAL WATCH",
+    "limitations": [
+      "None"
+    ],
+  
+    "status": "VALID",
+    "issue_date": "JUNE 19, 2024",
+    "expiry_date": "JUNE 19, 2029",
+    "revalidation_date": "--",
+    "document_url": "",
+    "image_url": "/officer_image/adamu.png",
+    "remarks": "Loaded from local documents.json",
+    "verification_type": "certificate"
+  }
+]

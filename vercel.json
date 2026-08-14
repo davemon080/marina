@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "routes": [
+    { "src": "/", "dest": "/index.html" },
+    { "src": "/index.html", "dest": "/index.html" },
+    { "src": "/signin", "dest": "/signin.html" },
+    { "src": "/signin.html", "dest": "/signin.html" },
+    { "src": "/register-type", "dest": "/register-type.html" },
+    { "src": "/register-type.html", "dest": "/register-type.html" },
+    { "src": "/verify-id-certificate", "dest": "/verify-id-certificate.html" },
+    { "src": "/verify-id-certificate.html", "dest": "/verify-id-certificate.html" },
+    { "src": "/verify-qr-code", "dest": "/verify-qr-code.html" },
+    { "src": "/verify-qr-code.html", "dest": "/verify-qr-code.html" },
+    { "src": "/verify-recaptcha", "dest": "/verify-recaptcha.html" },
+    { "src": "/verify-recaptcha.html", "dest": "/verify-recaptcha.html" },
+    { "src": "/api/verify-certificate", "dest": "/api/verify-certificate.js" },
+    { "src": "/pub/archive/certificate/verify", "dest": "/api/verify-certificate.js" },
+    { "src": "/pub/archive/id_card/verify", "dest": "/api/verify-certificate.js" },
+    { "src": "/api/verify-recaptcha", "dest": "/api/verify-recaptcha.js" }
+  ]
+}

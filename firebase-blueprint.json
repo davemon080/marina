@@ -1,0 +1,99 @@
+{
+  "entities": {
+    "certificates": {
+      "title": "Certificates and Identification Records",
+      "description": "Maritime certificates, identification cards, SRN and seafarer documents for verification",
+      "type": "object",
+      "properties": {
+        "serial_number": { "type": "string" },
+        "certificate_number": { "type": "string" },
+        "srn": { "type": "string" },
+        "id_number": { "type": "string" },
+        "full_name": { "type": "string" },
+        "first_name": { "type": "string" },
+        "middle_name": { "type": "string" },
+        "last_name": { "type": "string" },
+        "certificate_type": { "type": "string" },
+        "function": { "type": "string" },
+        "level_of_responsibility": { "type": "string" },
+        "regulation_no": { "type": "string" },
+        "capacity": { "type": "string" },
+        "limitations": { "type": "array", "items": { "type": "string" } },
+        "status": { "type": "string" },
+        "issue_date": { "type": "string" },
+        "expiry_date": { "type": "string" },
+        "revalidation_date": { "type": "string" },
+        "document_url": { "type": "string" },
+        "image_url": { "type": "string" },
+        "remarks": { "type": "string" },
+        "verification_type": { "type": "string" }
+      },
+      "required": ["serial_number", "full_name", "status"]
+    },
+    "verification_logs": {
+      "title": "Verification Logs",
+      "description": "Audit logs of verification attempts",
+      "type": "object",
+      "properties": {
+        "serial_number": { "type": "string" },
+        "verification_type": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["serial_number", "verification_type", "timestamp", "status"]
+    },
+    "examination_schedules": {
+      "title": "Examination Schedules",
+      "description": "Schedules for seafarer examinations and assessments",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "center": { "type": "string" },
+        "date": { "type": "string" },
+        "category": { "type": "string" },
+        "capacity": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["title", "center", "date"]
+    },
+    "users": {
+      "title": "Users",
+      "description": "Registered seafarers, officers, and verifiers with associated serial numbers and verification types",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "full_name": { "type": "string" },
+        "first_name": { "type": "string" },
+        "middle_name": { "type": "string" },
+        "last_name": { "type": "string" },
+        "role": { "type": "string" },
+        "serial_number": { "type": "string" },
+        "verification_type": { "type": "string" },
+        "srn": { "type": "string" },
+        "id_number": { "type": "string" },
+        "certificate_number": { "type": "string" },
+        "status": { "type": "string" },
+        "last_verified_at": { "type": "string" },
+        "last_verification_type": { "type": "string" },
+        "last_verification_status": { "type": "string" },
+        "created_at": { "type": "string" },
+        "updated_at": { "type": "string" }
+      },
+      "required": ["serial_number", "verification_type"]
+    }
+  },
+  "firestore": {
+    "/certificates/{certificateId}": {
+      "schema": { "$ref": "#/entities/certificates" },
+      "description": "Collection of certificates and seafarer identification documents"
+    },
+    "/verification_logs/{logId}": {
+      "schema": { "$ref": "#/entities/verification_logs" },
+      "description": "Audit logs for verification requests"
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/users" },
+      "description": "Collection of users and seafarers storing user data, verification type, and serial number"
+    }
+  }
+}
