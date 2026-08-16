@@ -691,7 +691,7 @@
                     s.a.createElement(
                       p.a.Body,
                       { style: { padding: 0 } },
-                      t.size > 0 &&
+                      t.size > 0 ?
                         s.a.createElement(
                           "div",
                           { className: "container-fluid" },
@@ -775,39 +775,37 @@
                           s.a.createElement("hr", null),
                           s.a.createElement(
                             "div",
-                            { className: "row justify-content-center px-2 px-md-3", style: { marginLeft: 0, marginRight: 0 } },
+                            { className: "row modal-cert-row align-items-start" },
                             s.a.createElement(
                               "div",
                               {
-                                className: "col-12 col-md-3 text-center mb-3 mb-md-0",
+                                className: "col-12 col-md-3 text-center mb-3",
                                 style: { marginTop: 10 },
                               },
                               s.a.createElement(
                                 "div",
-                                { className: "d-inline-block text-center" },
+                                null,
                                 s.a.createElement(f.a, {
                                   src: t.get("photo") || E.a,
-                                  className: "img-thumbnail mx-auto",
-                                  width: "180",
-                                  style: { maxWidth: "180px", width: "100%" },
+                                  className: "img-thumbnail",
+                                  width: "200",
                                   alt: t.get("photo"),
                                 }),
                               ),
                               s.a.createElement(
                                 "div",
-                                { className: "mt-3 d-inline-block text-center" },
+                                { className: "mt-3" },
                                 s.a.createElement(f.a, {
                                   src: t.get("qr_code") || g.a,
-                                  className: "img-thumbnail mx-auto",
-                                  width: "180",
-                                  style: { maxWidth: "180px", width: "100%" },
+                                  className: "img-thumbnail",
+                                  width: "200",
                                   alt: t.get("qr_code"),
                                 }),
                               ),
                             ),
                             s.a.createElement(
                               "div",
-                              { className: "col-12 col-md-9" },
+                              { className: "col" },
                               s.a.createElement(
                                 "table",
                                 { className: "table table-sm table-no-border" },
@@ -1035,7 +1033,8 @@
                               ),
                             ),
                           ),
-                        ),
+                        )
+                     : s.a.createElement("div", { style: { padding: "40px 20px", textAlign: "center", color: "#E74C3C", fontSize: "16px", fontWeight: "bold" } }, "Document not found")
                     ),
                     s.a.createElement(
                       p.a.Footer,
@@ -1076,8 +1075,7 @@
     630: function (e, A, t) {
       "use strict";
       t.r(A);
-      var a,
-        _showValidationToast = function (e) {
+      var _showValidationToast = function (e) {
           if ("undefined" === typeof document) return;
           var A = document.getElementById("marina-validation-toast");
           if (A && A.parentNode) A.parentNode.removeChild(A);
@@ -1086,12 +1084,12 @@
           t.style.position = "fixed";
           t.style.top = "20px";
           t.style.right = "20px";
-          t.style.width = "150px";
-          t.style.height = "70px";
+          t.style.minWidth = "180px";
+          t.style.maxWidth = "340px";
           t.style.background = "#E74C3C";
           t.style.color = "#fff";
           t.style.borderRadius = "4px";
-          t.style.padding = "12px 10px 12px 12px";
+          t.style.padding = "12px 14px";
           t.style.boxShadow = "0 4px 12px rgba(0,0,0,.25)";
           t.style.zIndex = "99999";
           t.style.display = "flex";
@@ -1105,10 +1103,10 @@
           t.style.overflow = "hidden";
           var l = document.createElement("div");
           l.style.flex = "1";
-          l.style.marginRight = "6px";
-          l.style.whiteSpace = "nowrap";
-          l.style.lineHeight = "1.2";
-          l.textContent = e || "Invalid SRN";
+          l.style.marginRight = "8px";
+          l.style.whiteSpace = "normal";
+          l.style.lineHeight = "1.3";
+          l.textContent = e || "Document not found";
           var n = document.createElement("button");
           n.type = "button";
           n.setAttribute("aria-label", "Close");
@@ -1117,10 +1115,10 @@
           n.style.border = "none";
           n.style.color = "#fff";
           n.style.cursor = "pointer";
-          n.style.fontSize = "15px";
+          n.style.fontSize = "16px";
           n.style.lineHeight = "1";
           n.style.padding = "0";
-          n.style.marginLeft = "2px";
+          n.style.marginLeft = "4px";
           n.onclick = function () {
             t.style.opacity = "0";
             t.style.transform = "translateX(24px)";
@@ -1138,7 +1136,9 @@
             t.style.transform = "translateX(20px)";
             setTimeout(function () { t.remove(); }, 300);
           }, 4000);
-        },
+        };
+        if ("undefined" !== typeof window) { window._showValidationToast = _showValidationToast; }
+      var a,
         l = t(76),
         n = t(35),
         r = t(36),
@@ -1741,7 +1741,7 @@
                     d.a.createElement(
                       v.a.Body,
                       { style: { padding: 0 } },
-                      t.size > 0 &&
+                      t.size > 0 ?
                         d.a.createElement(
                           "div",
                           { className: "container-fluid" },
@@ -1820,39 +1820,37 @@
                           d.a.createElement("hr", null),
                           d.a.createElement(
                             "div",
-                            { className: "row justify-content-center px-2 px-md-3", style: { marginLeft: 0, marginRight: 0 } },
+                            { className: "row modal-cert-row align-items-start" },
                             d.a.createElement(
                               "div",
                               {
-                                className: "col-12 col-md-3 text-center mb-3 mb-md-0",
+                                className: "col-12 col-md-3 text-center mb-3",
                                 style: { marginTop: 10 },
                               },
                               d.a.createElement(
                                 "div",
-                                { className: "d-inline-block text-center" },
+                                null,
                                 d.a.createElement(g.a, {
                                   src: t.get("photo") || w.a,
-                                  className: "img-thumbnail mx-auto",
-                                  width: "180",
-                                  style: { maxWidth: "180px", width: "100%" },
+                                  className: "img-thumbnail",
+                                  width: "200",
                                   alt: t.get("photo"),
                                 }),
                               ),
                               d.a.createElement(
                                 "div",
-                                { className: "mt-3 d-inline-block text-center" },
+                                { className: "mt-3" },
                                 d.a.createElement(g.a, {
                                   src: t.get("qr_code") || L.a,
-                                  className: "img-thumbnail mx-auto",
-                                  width: "180",
-                                  style: { maxWidth: "180px", width: "100%" },
+                                  className: "img-thumbnail",
+                                  width: "200",
                                   alt: t.get("qr_code"),
                                 }),
                               ),
                             ),
                             d.a.createElement(
                               "div",
-                              { className: "col-12 col-md-9" },
+                              { className: "col" },
                               d.a.createElement(
                                 "table",
                                 { className: "table table-sm table-no-border" },
@@ -1961,7 +1959,8 @@
                               ),
                             ),
                           ),
-                        ),
+                        )
+                     : d.a.createElement("div", { style: { padding: "40px 20px", textAlign: "center", color: "#E74C3C", fontSize: "16px", fontWeight: "bold" } }, "Document not found")
                     ),
                     d.a.createElement(
                       v.a.Footer,
@@ -2030,11 +2029,10 @@
                     type: b.w,
                     args: { serial_number: n, captcha: c },
                     onResetCapcha: function () {
-                      if (a && typeof a.reset === "function") a.reset();
-                      t.setState({ captcha: "" });
+                      a.reset();
                     },
                     onSuccess: function () {
-                      if (a && typeof a.reset === "function") a.reset();
+                      a.reset();
                       t.setState({
                         serial_number: "",
                         srn: "",
@@ -2053,6 +2051,17 @@
                         },
                       });
                     },
+                    onError: function (err) {
+                      a.reset();
+                      t.setState({
+                        serial_number: "",
+                        srn: "",
+                        sirb_number: "",
+                        type: "",
+                        captcha: "",
+                      });
+                      _showValidationToast((err && (err.message || err.error)) || "Document not found");
+                    },
                   });
                 }
 
@@ -2061,11 +2070,10 @@
                     type: b.w,
                     args: { serial_number: r, captcha: c },
                     onResetCapcha: function () {
-                      if (a && typeof a.reset === "function") a.reset();
-                      t.setState({ captcha: "" });
+                      a.reset();
                     },
                     onSuccess: function () {
-                      if (a && typeof a.reset === "function") a.reset();
+                      a.reset();
                       t.setState({
                         serial_number: "",
                         srn: "",
@@ -2085,6 +2093,18 @@
                         },
                       });
                     },
+                    onError: function (err) {
+                      a.reset();
+                      t.setState({
+                        serial_number: "",
+                        srn: "",
+                        sirb_number: "",
+                        type: "",
+                        captcha: "",
+                        legal: "",
+                      });
+                      _showValidationToast((err && (err.message || err.error)) || "Document not found");
+                    },
                   });
                 }
 
@@ -2093,11 +2113,10 @@
                     type: b.B,
                     args: { srn: i, captcha: c },
                     onResetCapcha: function () {
-                      if (a && typeof a.reset === "function") a.reset();
-                      t.setState({ captcha: "" });
+                      a.reset();
                     },
                     onSuccess: function () {
-                      if (a && typeof a.reset === "function") a.reset();
+                      a.reset();
                       t.setState({
                         certificate_number: "",
                         srn: "",
@@ -2108,7 +2127,7 @@
                       _showValidationToast("Invalid SRN");
                     },
                     onError: function () {
-                      if (a && typeof a.reset === "function") a.reset();
+                      a.reset();
                       t.setState({
                         certificate_number: "",
                         srn: "",
@@ -2122,7 +2141,7 @@
                 }
 
                 if ("sirb_number" === o) {
-                  if (a && typeof a.reset === "function") a.reset();
+                  a.reset();
                   t.setState({
                     certificate_number: "",
                     srn: "",
@@ -2134,7 +2153,7 @@
                 }
               }),
               (t.handleOnVerifyCallback = function (e) {
-                t.setState({ captcha: e || "" });
+                t.setState({ captcha: e });
               }),
               (t.handleOnChange = function (e) {
                 (t.setState(
@@ -2150,8 +2169,7 @@
                 console.log("");
               }),
               (t.resetCaptcha = function () {
-                if (a && typeof a.reset === "function") a.reset();
-                t.setState({ captcha: "" });
+                a.reset();
               }),
               t
             );
@@ -2425,7 +2443,7 @@
                                               "button",
                                               {
                                                 type: "submit",
-                                                disabled: !n || e,
+                                                disabled: "" === n,
                                                 className:
                                                   "btn btn-primary btn-block",
                                               },
@@ -2471,4 +2489,4 @@
     },
   },
 ]);
-//# sourceMappingURL=15.ad2ec10e.chunk.js.map
+

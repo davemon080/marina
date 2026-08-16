@@ -1,27 +1,16 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-
-    // Allow read and write for certificates collection
+    // Match any document in the certificates collection
     match /certificates/{certificateId} {
       allow read: if true;
       allow write: if true;
     }
-
-    // Allow read and write for verification logs audit
-    match /verification_logs/{logId} {
-      allow read, write: if true;
-    }
-
-    // Allow read and write for examination schedules
-    match /examination_schedules/{scheduleId} {
-      allow read, write: if true;
-    }
-
-    // Users collection rules
-    match /users/{userId} {
-      allow read, write: if true;
+    
+    // Match any other documents
+    match /{document=**} {
+      allow read: if true;
+      allow write: if true;
     }
   }
 }
-

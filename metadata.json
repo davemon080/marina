@@ -1,6 +1,6 @@
 {
-  "name": "MARINA MISMO Verification System",
-  "description": "MARINA Integrated Seafarers Management Online (MISMO) Verification System",
+  "name": "MARINA MISMO",
+  "description": "MARINA Integrated Seafarers Management Online (MISMO) System",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

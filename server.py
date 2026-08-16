@@ -35,9 +35,6 @@ def load_environment_from_dotenv():
 load_environment_from_dotenv()
 
 RECAPTCHA_SECRET_KEY = os.environ.get('RECAPTCHA_SECRET_KEY', '').strip()
-SUPABASE_URL = os.environ.get('SUPABASE_URL', '').rstrip('/')
-SUPABASE_SECRET_KEY = os.environ.get('SUPABASE_SECRET_KEY', '').strip()
-SUPABASE_TABLE = os.environ.get('SUPABASE_TABLE', 'certificate_records')
 DOCUMENTS_JSON_PATH = Path(BASE_DIR) / 'documents.json'
 
 
@@ -132,30 +129,6 @@ def api_verify_recaptcha():
         return add_cors_headers(jsonify(response)), status
     except Exception:
         return add_cors_headers(jsonify({'ok': False, 'error': 'verification request failed'})), 200
-
-
-def fetch_certificate_from_supabase(serial_number):
-    if not SUPABASE_URL or not SUPABASE_SECRET_KEY:
-        return None
-
-    try:
-        url = f"{SUPABASE_URL}/rest/v1/{SUPABASE_TABLE}?select=*&serial_number=eq.{serial_number}"
-        req = Request(
-            url,
-            headers={
-                'Accept': 'application/json',
-                'apikey': SUPABASE_SECRET_KEY,
-                'Authorization': f'Bearer {SUPABASE_SECRET_KEY}',
-            },
-        )
-        with urlopen(req, timeout=5) as response:
-            rows = json.load(response)
-    except Exception:
-        return None
-
-    if isinstance(rows, list) and rows:
-        return rows[0]
-    return None
 
 
 def load_documents_from_json():
@@ -317,7 +290,9 @@ def build_certificate_payload(serial_number, verification_type=None):
             }
         }
 
-    return {'status': 404, 'ok': False, 'message': 'serial number does not exist', 'error': 'serial number does not exist', 'data': {}}
+    if selected_type == 'sirb':
+        return {'ok': False, 'data': {}, 'error': 'SIRB not found'}
+    return {'ok': False, 'data': {}, 'error': 'Document not found'}
 
 
 @app.route('/api/verify-certificate', methods=['GET', 'POST', 'OPTIONS'])

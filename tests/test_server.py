@@ -146,10 +146,6 @@ class RecaptchaEndpointTests(unittest.TestCase):
         self.assertFalse(payload['ok'])
         self.assertEqual(payload['error'], 'SIRB not found')
 
-    def test_load_environment_from_dotenv_loads_supabase_values(self):
-        server.load_environment_from_dotenv()
-        self.assertTrue(bool(os.environ.get('SUPABASE_URL', '')))
-
 
 if __name__ == '__main__':
     unittest.main()
