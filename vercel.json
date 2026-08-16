@@ -1,11 +1,12 @@
 {
   "version": 2,
+  "cleanUrls": true,
   "rewrites": [
-    { "source": "/api/verify-certificate", "destination": "/api/verify-certificate.js" },
-    { "source": "/pub/archive/certificate/verify", "destination": "/api/verify-certificate.js" },
-    { "source": "/pub/archive/certificate/legal/verify", "destination": "/api/verify-certificate.js" },
-    { "source": "/pub/archive/id_card/verify", "destination": "/api/verify-certificate.js" },
-    { "source": "/api/verify-recaptcha", "destination": "/api/verify-recaptcha.js" },
+    { "source": "/api/verify-certificate", "destination": "/api/verify-certificate" },
+    { "source": "/pub/archive/certificate/verify", "destination": "/api/verify-certificate" },
+    { "source": "/pub/archive/certificate/legal/verify", "destination": "/api/verify-certificate" },
+    { "source": "/pub/archive/id_card/verify", "destination": "/api/verify-certificate" },
+    { "source": "/api/verify-recaptcha", "destination": "/api/verify-recaptcha" },
     { "source": "/verify-recaptcha", "destination": "/verify-recaptcha.html" },
     { "source": "/signin", "destination": "/signin.html" },
     { "source": "/register-type", "destination": "/register-type.html" },
