@@ -336,25 +336,28 @@ const htmlPages = [
 ];
 
 htmlPages.forEach((pageName) => {
-  const filePath = path.join(BASE_DIR, `${pageName}.html`);
+  const getHtmlPath = () => {
+    const distHtml = path.join(BASE_DIR, 'dist', `${pageName}.html`);
+    if (fs.existsSync(distHtml)) return distHtml;
+    const rootHtml = path.join(BASE_DIR, `${pageName}.html`);
+    if (fs.existsSync(rootHtml)) return rootHtml;
+    const distIndex = path.join(BASE_DIR, 'dist', 'index.html');
+    if (fs.existsSync(distIndex)) return distIndex;
+    return path.join(BASE_DIR, 'index.html');
+  };
+
   app.get(`/${pageName}`, (_req, res) => {
-    if (fs.existsSync(filePath)) {
-      res.sendFile(filePath);
-    } else {
-      res.sendFile(path.join(BASE_DIR, 'index.html'));
-    }
+    res.sendFile(getHtmlPath());
   });
   app.get(`/${pageName}.html`, (_req, res) => {
-    if (fs.existsSync(filePath)) {
-      res.sendFile(filePath);
-    } else {
-      res.sendFile(path.join(BASE_DIR, 'index.html'));
-    }
+    res.sendFile(getHtmlPath());
   });
 });
 
+const isServerless = Boolean(process.env.VERCEL || process.env.NOW_REGION || process.env.AWS_LAMBDA_FUNCTION_NAME);
+
 async function startServer() {
-  if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== 'production' && !isServerless) {
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: 'spa',
@@ -362,15 +365,42 @@ async function startServer() {
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(BASE_DIR, 'dist');
-    app.use(express.static(distPath));
+    if (fs.existsSync(distPath)) {
+      app.use(express.static(distPath));
+    }
     app.get('*', (_req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
+      const distIndex = path.join(distPath, 'index.html');
+      if (fs.existsSync(distIndex)) {
+        res.sendFile(distIndex);
+      } else {
+        res.sendFile(path.join(BASE_DIR, 'index.html'));
+      }
     });
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`MARINA MISMO Server running on http://0.0.0.0:${PORT}`);
+  if (!isServerless) {
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`MARINA MISMO Server running on http://0.0.0.0:${PORT}`);
+    });
+  }
+}
+
+if (!isServerless) {
+  startServer();
+} else {
+  // If running in Vercel or Serverless
+  const distPath = path.join(BASE_DIR, 'dist');
+  if (fs.existsSync(distPath)) {
+    app.use(express.static(distPath));
+  }
+  app.get('*', (_req, res) => {
+    const distIndex = path.join(distPath, 'index.html');
+    if (fs.existsSync(distIndex)) {
+      res.sendFile(distIndex);
+    } else {
+      res.sendFile(path.join(BASE_DIR, 'index.html'));
+    }
   });
 }
 
-startServer();
+export default app;
