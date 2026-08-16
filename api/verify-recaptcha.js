@@ -1,9 +1,9 @@
-const https = require('https');
-const querystring = require('querystring');
+import https from 'https';
+import querystring from 'querystring';
 
-const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY || '6LcuU3gtAAAAABPNnmJhFV0x73lo1LKymnOOf_2I';
+const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY || '';
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   const getValue = (source, key) => {
     if (!source) return '';
     if (typeof source === 'string') return source;
@@ -77,4 +77,4 @@ module.exports = async (req, res) => {
 
   request.write(postData);
   request.end();
-};
+}
