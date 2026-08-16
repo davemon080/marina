@@ -319,6 +319,7 @@ app.get('/pub/archive/id_card/verify', handleCertificateVerification);
 app.post('/pub/archive/id_card/verify', handleCertificateVerification);
 
 // Static assets routes
+app.use(express.static(path.join(BASE_DIR, 'public')));
 app.use('/officer_image', express.static(path.join(BASE_DIR, 'officer_image')));
 app.use('/static', express.static(path.join(BASE_DIR, 'static')));
 app.use('/assets', express.static(path.join(BASE_DIR, 'assets')));
@@ -359,7 +360,10 @@ async function startServer() {
   if (process.env.NODE_ENV !== 'production' && !isServerless) {
     const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: {
+        middlewareMode: true,
+        hmr: false,
+      },
       appType: 'spa',
     });
     app.use(vite.middlewares);

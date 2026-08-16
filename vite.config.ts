@@ -41,6 +41,7 @@ function copyStaticPagesPlugin(): Plugin {
       }
 
       copyRecursive(path.resolve(__dirname, 'static'), path.join(distDir, 'static'));
+      copyRecursive(path.resolve(__dirname, 'public'), distDir);
       copyRecursive(path.resolve(__dirname, 'officer_image'), path.join(distDir, 'officer_image'));
       copyRecursive(path.resolve(__dirname, 'assets'), path.join(distDir, 'assets'));
     },
@@ -56,8 +57,8 @@ export default defineConfig(() => {
       },
     },
     server: {
-      hmr: process.env.DISABLE_HMR !== 'true',
-      watch: process.env.DISABLE_HMR === 'true' ? null : {},
+      hmr: false,
+      watch: null,
     },
   };
 });
